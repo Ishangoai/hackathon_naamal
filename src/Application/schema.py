@@ -1,42 +1,41 @@
 from typing import Optional
 from pydantic import BaseModel
-from datetime import datetime,date
 
 # schema for returning an alumni
 class AlumniModel(BaseModel):
-    timestamp: str
-    email: str
-    first_name: str
-    last_name: str
-    phone_number: str
-    location_city: str
-    location_country: str
-    nationality: str
-    right_to_work: str
-    id_documents: str
-    has_bank_account: str
-    bank_account_registered_in_country: str
-    receive_payments_abroad: str
-    linkedin_profile: str
-    github_profile: str
-    cv_link: str
-    personal_website: str
-    skills_react: str
-    skills_python: str
-    skills_css: str
-    skills_javascript: str
-    skills_html: str
-    work_preference_remote: str
-    work_preference_colocated: str
-    work_preference_hybrid: str
-    experience_years_colocated: str
-    experience_years_remote: str
-    experience_years_hybrid: str
-    has_computer_access: str
-    has_reliable_internet: str
-    has_smartphone: str
-    has_unlimited_mobile_data: str
-    additional_information_for_employers: str
+    timestamp: Optional[str]
+    email: Optional[str]
+    first_name: Optional[str]
+    last_name: Optional[str]
+    phone_number: Optional[str]
+    location_city: Optional[str]
+    location_country: Optional[str]
+    nationality: Optional[str]
+    right_to_work: Optional[str]
+    id_documents: Optional[str]
+    has_bank_account: Optional[str]
+    bank_account_registered_in_country: Optional[str]
+    receive_payments_abroad: Optional[str]
+    linkedin_profile: Optional[str]
+    github_profile: Optional[str]
+    cv_link: Optional[str]
+    personal_website: Optional[str]
+    skills_react: Optional[str]
+    skills_python: Optional[str]
+    skills_css: Optional[str]
+    skills_javascript: Optional[str]
+    skills_html: Optional[str]
+    work_preference_remote: Optional[str]
+    work_preference_colocated: Optional[str]
+    work_preference_hybrid: Optional[str]
+    experience_years_colocated: Optional[str]
+    experience_years_remote: Optional[str]
+    experience_years_hybrid: Optional[str]
+    has_computer_access: Optional[str]
+    has_reliable_internet: Optional[str]
+    has_smartphone: Optional[str]
+    has_unlimited_mobile_data: Optional[str]
+    additional_information_for_employers: Optional[str]
 
     class Config:
         orm_mode = True
