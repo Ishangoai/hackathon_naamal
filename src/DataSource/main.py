@@ -1,7 +1,9 @@
 import pandas as pd
 from decouple import config
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from cleaning_utils import column_name_mapping, data_types
+from create_db import Alumni
 
 sheet_id = config("SPREADSHEET_ID")
 db_url = config('DATABASE_URL')
@@ -14,6 +16,16 @@ df.rename(columns=column_name_mapping, inplace=True)
 
 
 engine = create_engine(db_url, echo=True)
-df.to_sql('alumni', con=engine, if_exists='replace', index=False, dtype=data_types)
 
-engine.dispose()
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+
+for index, row in df.iterrows():
+    alumni_record = Alumni(**row.to_dict())
+    session.merge(alumni_record)
+
+
+session.commit()
+session.close()
