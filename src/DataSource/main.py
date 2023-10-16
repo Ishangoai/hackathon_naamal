@@ -11,7 +11,6 @@ df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?form
 
 df.rename(columns=column_name_mapping, inplace=True)
 
-print(df)
 
 
 engine = create_engine(db_url, echo=True)
