@@ -119,19 +119,19 @@ def get_alumni_by_email(email, alumni: Annotated[List[AlumniModel], Depends(get_
     alumni = service.get_alumni_by_email(email, db)
     return alumni
 
-@app.patch("/users/{username}")
-async def update_password(username: str, new_password: str, current_user: Annotated[User, Depends(get_current_user)]
-):
-    """Update user password by username
+# @app.patch("/users/{username}")
+# async def update_password(username: str, new_password: str, current_user: Annotated[User, Depends(get_current_user)]
+# ):
+#     """Update user password by username
 
-    Args:
-        username (str): username of user to update
-        password (str): new password for update
+#     Args:
+#         username (str): username of user to update
+#         password (str): new password for update
 
-    Returns:
-        dict: the updated success
-    """
-    db = SessionLocal()
-    response = service.update_password(db, username, new_password)
-    return response
+#     Returns:
+#         dict: the updated success
+#     """
+#     db = SessionLocal()
+#     response = service.update_password(db, username, new_password)
+#     return response
    
