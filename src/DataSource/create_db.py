@@ -3,6 +3,7 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import sessionmaker
 from decouple import config
 from cleaning_utils import data_types
+from passlib.context import CryptContext
 class Base(DeclarativeBase):
     pass
 
@@ -45,15 +46,40 @@ class Alumni(Base):
     additional_information_for_employers = Column(data_types['additional_information_for_employers'])
     additional_information_for_naamal = Column(data_types['additional_information_for_naamal'])
 
+# the database model for users
+class Users(Base):
+    __tablename__ = "users"
+
+    username = Column(Text, primary_key=True)
+    full_name = Column(Text)
+    email = Column(Text)
+    hashed_password = Column(Text)
+    disabled = Column(Text)
+
+
+
+
+
 
 db_url = config('DATABASE_URL')
 engine = create_engine(db_url, echo=True)
 Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+password = pwd_context.hash("ishango")
+password2 = pwd_context.hash("naamal")
+
 Session = sessionmaker(bind=engine)
 session = Session()
-session.commit()
 
+user1 = Users(username="dev", full_name="Ishango", email="dev@gmail.com", hashed_password=password, disabled=False)
+user2 = Users(username="naamal", full_name="Naamal", email="naamal@gmail.com", hashed_password=password2, disabled=False)
+
+
+session.add(user1)
+session.add(user2)
+
+session.commit()
 
 
