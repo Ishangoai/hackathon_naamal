@@ -38,3 +38,13 @@ class Alumni(Base):
     has_smartphone = Column(Text)
     has_unlimited_mobile_data = Column(Text)
     additional_information_for_employers = Column(Text)
+
+# the database model for users
+class Users(Base):
+    __tablename__ = "users"
+
+    username = Column(Text, primary_key=True)
+    full_name = Column(Text)
+    email = Column(Text)
+    hashed_password = Column(Text)
+    disabled = Column(Text)
